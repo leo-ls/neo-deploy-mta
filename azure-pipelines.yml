@@ -1,0 +1,47 @@
+trigger:
+  - main
+
+pool:
+  vmImage: "ubuntu-latest"
+
+steps:
+  - checkout: self
+    clean: "true"
+    persistCredentials: "true"
+
+  - task: NodeTool@0
+    displayName: "Install Node.js"
+    inputs:
+      versionSpec: "14.x"
+
+  - bash: |
+      echo ">>> Configure Git & NPM auth"
+      git config --global user.name $(GIT_COMMITTER_NAME)
+      git config --global user.email $(GIT_COMMITTER_EMAIL)
+      git checkout main --progress --force
+      echo -e "registry=https://registry.npmjs.org/\nalways-auth=true" >> .npmrc
+      echo ">>> Build"
+      npm ci
+      npm run release
+    displayName: "Build"
+    condition: succeeded()
+    env:
+      GIT_COMMITTER_EMAIL: $(GIT_COMMITTER_EMAIL)
+      GIT_COMMITTER_NAME: $(GIT_COMMITTER_NAME)
+
+  - task: npmAuthenticate@0
+    displayName: "Authenticate NPM"
+    inputs:
+      workingFile: .npmrc
+      customEndpoint: npmjs.org_automation
+
+  - task: Npm@1
+    displayName: "Publish to NPM"
+    inputs:
+      command: publish
+      publishRegistry: useExternalRegistry
+      publishEndpoint: npmjs.org_automation
+
+  - bash: git push --follow-tags origin main
+    displayName: "Push results"
+    condition: succeeded()
