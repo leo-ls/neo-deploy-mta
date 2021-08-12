@@ -38,6 +38,9 @@
   "scripts": {
     "release": "standard-version"
   },
+  "standard-version": {
+    "releaseCommitMessageFormat": "chore(release): {{currentTag}} [skip ci]"
+  },
   "config": {
     "commitizen": {
       "path": "cz-conventional-changelog"
