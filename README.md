@@ -1,6 +1,6 @@
 # neo-deploy-mta
 
-CLI tool for deloying MTAs to SAP BTP, Neo environment.
+CLI tool for deploying MTAs to SAP BTP, Neo environment.
 
 [![Build Status](https://dev.azure.com/leo-ls/neo-deploy-mta-oauth/_apis/build/status/leo-ls.neo-deploy-mta-oauth?branchName=main)](https://dev.azure.com/leo-ls/neo-deploy-mta-oauth/_build/latest?definitionId=4&branchName=main)
 [![npm](https://img.shields.io/npm/v/neo-deploy-mta-oauth)](https://www.npmjs.com/package/neo-deploy-mta-oauth)
