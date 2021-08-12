@@ -1,4 +1,4 @@
-# neo-deploy-mta
+# neo-deploy-mta-oauth
 
 CLI tool for deploying MTAs to SAP BTP, Neo environment.
 
