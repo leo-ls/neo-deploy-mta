@@ -1,0 +1,51 @@
+{
+  "name": "neo-deploy-mta-oauth",
+  "version": "1.0.0",
+  "description": "CLI tool for deploying MTAs to SAP BTP, Neo environment",
+  "license": "MIT",
+  "keywords": [
+    "SAP",
+    "BTP",
+    "Neo",
+    "deploy",
+    "mta",
+    "ndmo"
+  ],
+  "author": "Leonardo Schmidt",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/leo-ls/neo-deploy-mta-oauth.git"
+  },
+  "homepage": "https://github.com/leo-ls/neo-deploy-mta-oauth#readme",
+  "bugs": {
+    "url": "https://github.com/leo-ls/neo-deploy-mta-oauth/issues"
+  },
+  "dependencies": {
+    "axios": "^0.21.1",
+    "commander": "^8.1.0",
+    "form-data": "^4.0.0"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^13.1.0",
+    "@commitlint/config-conventional": "^13.1.0",
+    "eslint": "^7.32.0",
+    "husky": "^7.0.1",
+    "standard-version": "^9.3.1"
+  },
+  "bin": {
+    "ndmo": "./bin/cli.js"
+  },
+  "scripts": {
+    "release": "standard-version"
+  },
+  "config": {
+    "commitizen": {
+      "path": "cz-conventional-changelog"
+    }
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  }
+}
