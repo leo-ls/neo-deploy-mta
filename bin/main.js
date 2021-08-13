@@ -57,6 +57,8 @@ const getDeploymentStatus = (url, config) =>
     return { state, internalMessage };
   });
 
+const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
 module.exports = async (filePath, options) => {
   const account = options.account || process.env.NDMO_ACCOUNT;
   const host = options.host || process.env.NDMO_HOST;
@@ -76,6 +78,7 @@ module.exports = async (filePath, options) => {
   let status = await getDeploymentStatus(deploymentStateURL, authContext);
 
   while (status.state === "RUNNING") {
+    await sleep(10);
     console.log("[info]", "Deployment is still running...");
     status = await getDeploymentStatus(deploymentStateURL, authContext);
   }
