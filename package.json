@@ -1,6 +1,6 @@
 {
   "name": "neo-deploy-mta-oauth",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "description": "CLI tool for deploying MTAs to SAP BTP, Neo environment",
   "license": "MIT",
   "keywords": [
