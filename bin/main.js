@@ -52,7 +52,8 @@ const getDeploymentStatus = (url, config) =>
       throw new Error(`Deployment failed with unknown status ${state}`);
     }
 
-    const { internalMessage = "" } = progress[0].modules[0].error || {};
+    const hasError = (progress[0] && progress[0].error && progress[0].error.internalMessage) !== undefined;
+    const internalMessage = hasError ? progress[0].error.internalMessage : "";
 
     return { state, internalMessage };
   });
