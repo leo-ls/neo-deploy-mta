@@ -35,7 +35,11 @@ const deploy = async (url, authContext, filePath) => {
 
   data.append("file", file, base);
 
-  const config = { headers: { ...data.getHeaders(), ...authContext.headers } };
+  const config = {
+    maxContentLength: Infinity,
+    maxBodyLength: Infinity,
+    headers: { ...data.getHeaders(), ...authContext.headers }
+  };
 
   return axios.post(url, data, config).then(({ data: { id = "" } }) => {
     if (!id) {
